@@ -1,4 +1,4 @@
-package com.example.iprwc_app_backend.utils;
+package com.example.iprwc_app_backend.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtUtil {
+public class JwtService {
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     public String extractUserName(String token) {

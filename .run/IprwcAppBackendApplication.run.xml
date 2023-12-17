@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IprwcAppBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="personal,testdata" />
+    <module name="IPRWC_app_backend" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.iprwc_app_backend.IprwcAppBackendApplication" />
+    <option name="VM_PARAMETERS" value="-cp $Classpath$:/src/test/resources" />
+    <method v="2">
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="generate-sources" />
+      <option name="Make" enabled="true" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean verify -DskipTests spring-boot:build-info" />
+    </method>
+  </configuration>
+</component>
