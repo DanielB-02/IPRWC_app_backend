@@ -20,16 +20,6 @@ public class ShopItemController {
         return this.shopItemService.create(form);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<ShopItem> readAll(){
-        return this.shopItemService.readAll();
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<ShopItem> readSingle(@PathVariable long id){
-        return this.shopItemService.readSingle(id);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ShopItem update(@PathVariable long id, @RequestBody @Valid ShopItemForm form){
         return this.shopItemService.update(id, form);
