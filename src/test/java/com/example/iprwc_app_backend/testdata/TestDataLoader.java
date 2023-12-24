@@ -1,8 +1,7 @@
 package com.example.iprwc_app_backend.testdata;
 
-import com.example.iprwc_app_backend.model.Role;
-import com.example.iprwc_app_backend.model.ShopItem;
-import com.example.iprwc_app_backend.model.User;
+import com.example.iprwc_app_backend.model.*;
+import com.example.iprwc_app_backend.repository.OrderItemRepository;
 import com.example.iprwc_app_backend.repository.ShopItemRepository;
 import com.example.iprwc_app_backend.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -18,6 +17,7 @@ public class TestDataLoader {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ShopItemRepository shopItemRepository;
+    private final OrderItemRepository orderItemRepository;
 
 
     @PostConstruct
@@ -38,8 +38,16 @@ public class TestDataLoader {
         createShopItem("D'Angelico Excel SS", "Semi-hollow electric guitar", 1600, "path/to/image1.jpg");
         createShopItem("Jackson Soloist", "Metal shredder's choice", 1500, "path/to/image1.jpg");
         createShopItem("Seagull S6", "Quality acoustic guitar", 500, "path/to/image1.jpg");
+
+//        createOrderItem()
     }
 
+    private void createOrderItem(ShopItem shopItem, Order order) {
+        var orderItem = OrderItem.builder()
+                    .shopItem(shopItem)
+                    .order(order).build();
+            orderItemRepository.save(orderItem);
+    }
 
 
     private void createUser(String firstName, String lastName, String email, String password, Role role) {
