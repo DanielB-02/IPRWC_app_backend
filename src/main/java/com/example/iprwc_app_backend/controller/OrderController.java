@@ -1,6 +1,7 @@
 package com.example.iprwc_app_backend.controller;
 
 import com.example.iprwc_app_backend.controller.vo.OrderItemForm;
+import com.example.iprwc_app_backend.controller.vo.OrderItemResult;
 import com.example.iprwc_app_backend.controller.vo.ShopItemForm;
 import com.example.iprwc_app_backend.model.OrderItem;
 import com.example.iprwc_app_backend.model.ShopItem;
@@ -17,8 +18,15 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<OrderItem> readMyOrder(){
-        return this.orderService.readMyOrder();
+    public Iterable<OrderItemResult> readMyOrder(){
+        return this.orderService.readMyOrder().stream()
+                .map(orderItem -> {
+                    OrderItemResult orderItemResult = new OrderItemResult();
+                    orderItemResult.amount = 1; // TO DO dit moet nog afgemaakt worden!
+                    orderItemResult.shopItem = orderItem.getShopItem();
+                    return orderItemResult;
+                })
+                .toList();
     }
 
     @RequestMapping(value = "/product/{product}", method = RequestMethod.POST)
@@ -32,8 +40,8 @@ public class OrderController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
-    public Iterable<OrderItem> confirmOrder(){
-        return this.orderService.confirmOrder();
+    public void confirmOrder(){
+        this.orderService.confirmOrder();
     }
 
 }

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.example.iprwc_app_backend.model.OrderStatus.OPEN;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,4 +20,6 @@ public class Order {
     private long id;
     @ManyToOne
     private User user;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 }
