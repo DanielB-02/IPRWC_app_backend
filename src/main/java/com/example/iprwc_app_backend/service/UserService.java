@@ -5,6 +5,8 @@ import com.example.iprwc_app_backend.repository.UserRepository;
 import com.example.iprwc_app_backend.exception.NotFoundException;
 import com.example.iprwc_app_backend.security.AdminSecurity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,5 +41,11 @@ public class UserService implements UserDetailsService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User myCredentials() {
+        UsernamePasswordAuthenticationToken authentication =
+                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        return (User)authentication.getPrincipal();
     }
 }

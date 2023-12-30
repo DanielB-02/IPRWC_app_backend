@@ -19,7 +19,7 @@ public class OrderController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<OrderItemResult> readMyOrder(){
-        return this.orderService.readMyOrder().stream()
+         return this.orderService.readMyOrder().stream()
                 .map(orderItem -> {
                     OrderItemResult orderItemResult = new OrderItemResult();
                     orderItemResult.amount = 1; // TO DO dit moet nog afgemaakt worden!
