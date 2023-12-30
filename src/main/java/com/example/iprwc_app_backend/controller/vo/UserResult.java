@@ -11,6 +11,9 @@ public class UserResult {
     public Role role;
 
     public static UserResult create(User user) {
+        if (user == null) {
+            return null;
+        }
         UserResult result = new UserResult();
         result.id = user.getId();
         result.email = user.getEmail();
